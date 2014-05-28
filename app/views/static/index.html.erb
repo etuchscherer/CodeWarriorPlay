@@ -1,0 +1,14 @@
+<h1 class="jumbotron">
+  Our Deployment Mechanism
+</h1>
+
+<% if @git.remote_v('/tmp/prod') != @git.local_v('/tmp/prod') %>
+<p>
+  They do not match
+</p>
+<%= link_to 'Deploy Now!', stuxnet_deploy_path, class: 'btn btn-primary btn-lg' %>
+<% else %>
+<p>
+  they match, go grab some coffee!
+</p>
+<% end %>
