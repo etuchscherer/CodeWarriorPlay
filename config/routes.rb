@@ -1,7 +1,9 @@
 Play::Application.routes.draw do
+  devise_for :users
   get "stuxnet/deploy"
   get "static/index"
-  root 'static#index'
+  get "welcome" => 'static#welcome'
+  root 'static#welcome'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
