@@ -7,6 +7,7 @@ gem 'binding_of_caller'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'rest-client'
 gem 'devise'
 
 # Use SCSS for stylesheets
@@ -16,6 +17,9 @@ gem 'bootstrap-sass', '~> 3.1.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 gem 'dotenv'
+
+gem 'pry'
+gem 'pry-nav'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'

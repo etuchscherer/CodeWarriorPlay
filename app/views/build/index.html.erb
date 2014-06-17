@@ -1,0 +1,14 @@
+<h1 class="jumbotron">
+  Our Deployment Mechanism
+</h1>
+
+<% if configured_project_is_current %>
+<p>
+  Configured Project is Up To Date!
+</p>
+<% else %>
+<p>
+  	Configured Project is Out Of Date!
+	<%= link_to 'Deploy New Version!', stuxnet_deploy_path, class: 'btn btn-primary btn-lg' %>
+</p>
+<% end %>
