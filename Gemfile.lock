@@ -67,11 +67,18 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.10.1)
     orm_adapter (0.5.0)
     polyglot (0.3.4)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-nav (0.2.3)
+      pry (~> 0.9.10)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -91,6 +98,8 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -100,6 +109,7 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    slop (3.5.0)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -137,7 +147,10 @@ DEPENDENCIES
   dotenv
   jbuilder (~> 1.2)
   jquery-rails
+  pry
+  pry-nav
   rails (= 4.0.2)
+  rest-client
   sass-rails (~> 4.0.0)
   sdoc
   sqlite3

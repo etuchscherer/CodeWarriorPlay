@@ -7,4 +7,13 @@ module ApplicationHelper
       link_to 'Sign In', new_user_session_path
     end
   end
+
+  def configured_project_is_current
+  	remote = Github::Commits.new({owner: 'etuchscherer', repo: 'play'})
+  	local  = Git.new
+
+  	remote.fetch
+
+  	remote.last_commit_sha === local.local_v('/tmp/prod')
+  end
 end
