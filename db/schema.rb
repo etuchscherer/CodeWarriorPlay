@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140702232635) do
 
-  create_table "configurations", force: true do |t|
-    t.string   "name"
-    t.string   "source"
-    t.string   "destination"
-    t.boolean  "enabled"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "project_configurations", force: true do |t|
     t.string   "name"
     t.string   "source"
