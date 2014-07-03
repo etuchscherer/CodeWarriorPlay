@@ -1,4 +1,6 @@
 Play::Application.routes.draw do
+  resources :project_configurations
+
   get "build/index"
   devise_for :users
   get "stuxnet/deploy"
