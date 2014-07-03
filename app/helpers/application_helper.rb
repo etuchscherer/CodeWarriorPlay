@@ -8,6 +8,12 @@ module ApplicationHelper
     end
   end
 
+  def settings_button
+    if ProjectConfiguration.configured? && user_signed_in?
+      link_to 'Settings', project_configurations_path
+    end
+  end
+
   def configured_project_is_current
   	remote = Github::Commits.new({owner: 'etuchscherer', repo: 'play'})
   	local  = Git.new

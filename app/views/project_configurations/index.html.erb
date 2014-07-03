@@ -1,0 +1,34 @@
+<h1>Project Configuration</h1>
+
+<% if !ProjectConfiguration.configured? %>
+  <div class="alert alert-warning">This project has not been configured yet!</div>
+  <%= link_to 'Create Project Configuration', new_project_configuration_path, class: 'btn btn-success' %>
+
+<% else %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Project Name</th>
+        <th>Remote Source (Github)</th>
+        <th>Destination (Local)</th>
+        <th>Enabled</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><%= @configuration.name %></td>
+          <td><%= @configuration.source %></td>
+          <td><%= @configuration.destination %></td>
+          <td><%= @configuration.enabled %></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <div class="pull-right">
+    <%= link_to 'Edit Project configuration', edit_project_configuration_path(@configuration), class: 'btn btn-warning' %>
+    <%= link_to 'Done', build_index_path, class: 'btn btn-default' %>
+  </div>
+<% end %>
