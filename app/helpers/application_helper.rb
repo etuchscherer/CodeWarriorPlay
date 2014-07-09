@@ -15,11 +15,6 @@ module ApplicationHelper
   end
 
   def configured_project_is_current
-  	remote = Github::Commits.new({owner: 'etuchscherer', repo: 'play'})
-  	local  = Git.new
-
-  	remote.fetch
-
-  	remote.last_commit_sha === local.local_v('/tmp/prod')
+    Github.new_synchronizer.updated?
   end
 end

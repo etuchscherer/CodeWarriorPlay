@@ -1,11 +1,11 @@
 class StuxnetController < ApplicationController
   def deploy
-    @git = Git.new
+  	@synchronizer = Github.new_synchronizer
 
-    if @git.pull('/tmp/prod')
-      redirect_to "/"
-    else
-      fail
-    end
+  	if @synchronizer.pull
+  		redirect_to '/'
+  	else
+  		fail
+  	end
   end
 end

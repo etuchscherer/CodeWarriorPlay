@@ -1,14 +1,27 @@
-<h1 class="jumbotron">
-  Our Deployment Mechanism
-</h1>
+<% if Destination.exists? %>
 
-<% if configured_project_is_current %>
-<p>
-  Configured Project is Up To Date!
-</p>
+	<% if configured_project_is_current %>
+		<h1>Your Deployed Project is Up To Date!</h1>
+	<% else %>
+	<h1 class="jumbotron">
+	  	Behind Master!
+	  	<br>
+	  	<small><strong><%= @config.source %></strong> is ahead of your deployed project.</small>
+	  	<br>
+	  	<br>
+		<%= link_to 'Click to sync your project!', stuxnet_deploy_path, class: 'btn btn-primary btn-lg' %>
+	</h1>
+	<% end %>
+
+	<p><%= @config.name %> exists locally in <%= @config.destination %>. </p>
+	<p>The remote head's sha is: <%= @sync.master_latest_sha %></p>
+	<p>The local head's sha is: <%= @sync.local_latest_sha %></p>
 <% else %>
-<p>
-  	Configured Project is Out Of Date!
-	<%= link_to 'Deploy New Version!', stuxnet_deploy_path, class: 'btn btn-primary btn-lg' %>
-</p>
+	<h1 class="jumbotron">
+		First Deploy?
+		<br>
+		<small>Project does not exist at the destination directory.</small>
+		<br>
+		<%= link_to 'Clone It Now!', build_clone_path, {class: 'btn btn-large btn-success', method: :post} %>
+	</h1>
 <% end %>

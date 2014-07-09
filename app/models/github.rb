@@ -1,10 +1,14 @@
 module Github
   include RestClient
 
+  def self.new_synchronizer(args = {})
+    Sync.new(args)
+  end
+
   class Commits
 
-    def initialize(_args = {})
-      init_null_object _args
+    def initialize(args = {})
+      init_null_object args
     end
 
     def last_commit
@@ -22,39 +26,53 @@ module Github
 
     private
 
-    def init_null_object(_args)
-      @owner = _args[:owner] || ''
-      @repo = _args[:repo] || ''
-      @commits = _args[:commits] || []
+    def init_null_object(args)
+      config = ProjectConfiguration.first
+      @owner = args[:owner] || config.owner
+      @name = args[:name] || config.name
+      @destination = args[:destination] || config.destination
+      @source = args[:source] || config.source
     end
 
     def url_for_commits
-      "https://api.github.com/repos/#{@owner}/#{@repo}/commits"
+      "https://api.github.com/repos/#{@owner}/#{@name}/commits"
     end
   end
 
   class Sync
-    def initialize(_args = {})
-      init_null_object _args
+    def initialize(args = {})
+      init_null_object args
+    end
+
+    def master_latest_sha
+      remote = Github::Commits.new(owner: @owner, repo: @name).fetch.last_commit_sha
     end
 
     def local_latest_sha
-      %x(cd #{@project_path} && git rev-parse HEAD).chomp
+      %x(cd #{@destination} && git rev-parse HEAD).chomp
     end
 
     def pull
-      system "cd #{@project_path} && git pull"
+      system "cd #{@destination} && git pull"
+    end
+
+    def clone
+      system "git clone #{@source} #{@destination}"
     end
 
     def updated?
-      remote = Github::Commits.new(owner: 'etuchscherer', repo: 'potholes')
+      remote = Github::Commits.new(owner: @owner, repo: @name)
       remote.fetch.last_commit_sha == local_latest_sha
     end
 
     private
 
-    def init_null_object(_args)
-      @project_path = _args[:project_path] || ''
+    def init_null_object(args)
+      config = ProjectConfiguration.first
+      @owner = args[:owner] || config.owner
+      @name = args[:name] || config.name
+      @destination = args[:destination] || config.destination
+      @source = args[:source] || config.source
     end
   end
 end

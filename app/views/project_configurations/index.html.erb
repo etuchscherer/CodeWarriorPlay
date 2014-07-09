@@ -9,16 +9,14 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Project Name</th>
-        <th>Remote Source (Github)</th>
+        <th>Repo Name</th>
         <th>Destination (Local)</th>
         <th>Enabled</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td><%= @configuration.name %></td>
-          <td><%= @configuration.source %></td>
+          <td><%= @configuration.owner %>/<%=@configuration.name %></td>
           <td><%= @configuration.destination %></td>
           <td><%= @configuration.enabled %></td>
         </tr>

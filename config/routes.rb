@@ -2,6 +2,7 @@ Play::Application.routes.draw do
   resources :project_configurations
 
   get "build/index"
+  post "build/clone"
   devise_for :users
   get "stuxnet/deploy"
   get "index" => "build#index"
