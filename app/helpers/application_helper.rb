@@ -15,6 +15,12 @@ module ApplicationHelper
   end
 
   def configured_project_is_current
-    Github.new_synchronizer.updated?
+    config = ProjectConfiguration.first
+    Github.new_synchronizer({
+      owner: config.owner,
+      name: config.name,
+      destination: config.destination,
+      source: config.source  
+    }).updated?
   end
 end

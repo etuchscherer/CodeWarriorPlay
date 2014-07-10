@@ -27,11 +27,10 @@ module Github
     private
 
     def init_null_object(args)
-      config = ProjectConfiguration.first
-      @owner = args[:owner] || config.owner
-      @name = args[:name] || config.name
-      @destination = args[:destination] || config.destination
-      @source = args[:source] || config.source
+      @owner = args[:owner] || '' 
+      @name = args[:name] || '' 
+      @destination = args[:destination] || '' 
+      @source = args[:source] || '' 
     end
 
     def url_for_commits
@@ -45,7 +44,7 @@ module Github
     end
 
     def master_latest_sha
-      remote = Github::Commits.new(owner: @owner, repo: @name).fetch.last_commit_sha
+      remote = Github::Commits.new(owner: @owner, name: @name).fetch.last_commit_sha
     end
 
     def local_latest_sha
@@ -61,18 +60,17 @@ module Github
     end
 
     def updated?
-      remote = Github::Commits.new(owner: @owner, repo: @name)
+      remote = Github::Commits.new(owner: @owner, name: @name)
       remote.fetch.last_commit_sha == local_latest_sha
     end
 
     private
 
     def init_null_object(args)
-      config = ProjectConfiguration.first
-      @owner = args[:owner] || config.owner
-      @name = args[:name] || config.name
-      @destination = args[:destination] || config.destination
-      @source = args[:source] || config.source
+      @owner = args[:owner] ||  ''
+      @name = args[:name] ||  ''
+      @destination = args[:destination] ||  ''
+      @source = args[:source] ||  ''
     end
   end
 end
