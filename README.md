@@ -1,4 +1,10 @@
-# Unnamed Continous Delivery System
+# onTrac Continous Delivery System
+
+A simple continous delivery system, for a single server entity, backed by github.
+
+If you are serving files from a replicated server environment, this may not be for you.
+
+onTrac works by comparing the sha of your local git repo against the head of your ( github ) origin repo. If the Sha's do not match, the user has the option to deploy. 
 
 ## Installation
 
@@ -16,9 +22,11 @@ Configuration steps:
 3. Go!
     
 ## Useage:
-To run the project on `localhost:3000`
+To run onTrac locally on `localhost:3000`
 
     rails s
+
+We currently recommend running onTrac on your production server.
 
 ## Todos
 .5 onTrack Server Configuration (run it on the same hostname, different port)
